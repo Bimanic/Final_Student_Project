@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.2">
+    <meta name="MobileOptimized" content="width">
+  
+
+        <div class="middlediv">
+            <br>
+            <h1 style="text-align: center; margin-left:160px; margin-right:160px; font-size:45px; "> Maximizing the Benefits and Minimizing the Risks of Modern Technology in Education: A Study of the Impact of Generative AI Techniques on Student Cognitive Achievement in School and Higher Education<br></h1>
+        </div>
+      
+    
+
+</head>
+
+
+
+
+
+
+<style type=text/css>
+
+ 
+
+
+    .middlediv {
+        background-color: #c99a2c;
+        color: #fff;
+        width: 100%;
+        height: 200px;
+        margin: auto;
+        border-radius: 6px;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: space-between; /* Space out the logos to the left, center, and right */
+        align-items: center; /* Vertically center all logos */
+        width: 100%; /* Full width of the container */
+    }
+
+    .leftdiv, .centerdiv, .rightdiv {
+        display: flex;
+        justify-content: center; /* Aligns the logos within each div */
+        align-items: center; /* Vertically center the logos */
+    }
+
+        .leftdiv img, .centerdiv img, .rightdiv img {
+            width: 190px; /* Set the size for all logos */
+            height: 190px; /* Set the height for all logos */
+        }
+
+
+    #form {
+        background-color: #2d2a6d;
+        color: #fff;
+        border-radius: 6px;
+        height: 2500px;
+    }
+
+
+    label {
+        width: 400px;
+        display: inline-block;
+    }
+
+    .submit {
+        width: 70%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border-radius: 6px;
+    }
+
+    .container {
+        text-align: center;
+        width: 400px;
+        height: 150px;
+        padding-top: 80px;
+        position: relative;
+        margin: auto;
+        padding-left: 250px;
+    }
+
+    .buttton {
+        background-color: #2d2a6d;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    #div1 {
+        width: 77%;
+        float: left;
+        font-size: 190%;
+    }
+
+    #div2 {
+        width: 20%;
+        float: right;
+        font-size: 190%;
+    }
+
+    #div3 {
+        width: 23%;
+        margin: 0 auto;
+        font-size: 190%;
+    }
+
+    #div11 {
+        width: 7%;
+        float: left;
+        margin-top: 2px;
+    }
+
+    #div21 {
+        width: 7%;
+        float: right;
+    }
+
+    #div31 {
+        width: 86%;
+        margin: 0 auto;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+</style>
+<script type="text/javascript">
+    function zoom() {
+        document.body.style.zoom = "50%"
+    }
+
+
+</script>
+<body onload="zoom()">
+    <br>
+    <div class="logo-container">
+        <div class="leftdiv">
+            <img src="static/ministry_logo.png" alt="left logo" width="190" height="190" />
+        </div>
+
+        <div class="centerdiv">
+            <img src="static/ministry_transportation.png" alt="center logo" width="190" height="190" />
+        </div>
+
+        <div class="rightdiv">
+            <img src="static/logo.png" alt="right logo" width="190" height="190" />
+        </div>
+    </div>
+    <br>
+
+    <marquee scrollamount="12" bgcolor="#2d2a6d" height="160" style="color: rgba(255,255,255); font-size: 40px; border-radius: 6px;">
+        <br>
+        <img src="static/main_2_logo.png" alt="Logo" width="100" height="100" style="vertical-align: middle; padding-right: 10px;">
+        Ali - Ahmed - Manic Model
+        <br>
+    </marquee>
+
+
+
+
+    <!-- Form to take basic details from user -->
+
+    <div id="form">
+
+        <h2 style="text-align: center; font-size: 60px; padding-top: 30px"> Basic Details</h2>
+   
+        <form method="POST" , action="{{url_for('get_student_plot')}}">
+
+            <div id="div1">
+
+            </div>
+
+            <div id="div3">
+
+                <label style="font-size:37px;">Name:</label>   <input type="text" , name='name' , placeholder=" " style="width:210px; height:30px; font-size:20px;" required> <br><br>
+                <label style="font-size:37px;">School Name:</label>   <input type="text" , name='school_name' , placeholder=" " style="width:210px; height:30px; font-size:20px;" required> <br><br>
+
+
+
+                <label for="grade" style="font-size:37px;">Grade</label>
+
+                <select name="grade" id="grade" style="width:217px; height:30px; font-size:20px;">
+
+                    <option value="fifth">Fifth Grade</option>
+                    <option value="sixth">Sixth Grade</option>
+                    <option value="seventh">Seventh Grade</option>
+                    <option value="eighth">Eighth Grade</option>
+                    <option value="nineth">Nineth Grade</option>
+                    <option value="tenth">Tenth Grade</option>
+                    <option value="Eleventh">Eleventh Grade</option>
+                    <option value="Twelth"> TwelthGrade</option>
+
+                </select>
+                <br>
+                <br>
+
+                <label style="font-size:37px;"> Civil ID</label>  <input type="text" , name='civil_id' , placeholder=" " style="width:210px; height:30px; font-size:20px;" required> <br><br>
+
+
+
+                <label for="Gender" style="font-size:37px;">Gender</label>
+
+                <select name="grade" id="grade" style="width:217px ; height:30px; font-size:20px;">
+
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+
+
+                </select>
+                <br><br>
+
+                <label style="font-size:37px;"> Governance </label>  <input type="text" , name='governance' , placeholder=" " style="width:210px; height:30px; font-size:20px;" required> <br><br>
+
+
+                <div class="container">
+
+                    <input type="submit" , value='PROCEED' , class="submit" , style="font-size:30px;font-weight:bold;">
+                 
+
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+</body>
+</html>
+
+
