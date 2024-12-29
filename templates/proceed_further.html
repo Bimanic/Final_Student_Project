@@ -57,10 +57,27 @@
             height: 190px; /* Set the height for all logos */
         }
 
-    .image-container {
-        text-align: center;
-        margin-top: 20px;
+
+    #form {
+        background-color: #2d2a6d;
+        color: #fff;
+        border-radius: 6px;
+        height: 2500px;
     }
+
+
+    label {
+        width: 400px;
+        display: inline-block;
+    }
+
+    .submit {
+        width: 70%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border-radius: 6px;
+    }
+
     .container {
         text-align: center;
         width: 400px;
@@ -70,19 +87,57 @@
         margin: auto;
         padding-left: 250px;
     }
-    .button {
-        background-color: #c99a2c;
+
+    .buttton {
+        background-color: #2d2a6d;
         border: none;
         color: white;
-        max-width: 100%;
         padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 34px;
-        margin: 10px 15%;
+        font-size: 16px;
+        margin: 4px 2px;
         cursor: pointer;
         border-radius: 10px;
+    }
+
+    #div1 {
+        width: 77%;
+        float: left;
+        font-size: 190%;
+    }
+
+    #div2 {
+        width: 20%;
+        float: right;
+        font-size: 190%;
+    }
+
+    #div3 {
+        width: 23%;
+        margin: 0 auto;
+        font-size: 190%;
+    }
+
+    #div11 {
+        width: 7%;
+        float: left;
+        margin-top: 2px;
+    }
+
+    #div21 {
+        width: 7%;
+        float: right;
+    }
+
+    #div31 {
+        width: 86%;
+        margin: 0 auto;
+    }
+
+    label {
+        font-size: 16px;
     }
 </style>
 <script type="text/javascript">
@@ -116,25 +171,75 @@
         <br>
     </marquee>
 
-    <div class="image-container">
-        {% if flag == 1 %}
-        <h1>Student Performance for Civil ID: {{ civil_id }}</h1>
-        <h1>Name: {{ name }}</h1>
-        <br>
-        <!-- Display the generated plot -->
-        <img src="{{ url_for('static', filename=plot_path.split('/')[-1]) }}" alt="Student Plot" style="width: 100%; max-width: 3000px; height: auto;">
-        {% else %}
-        <h1>{{message}}</h1>
-        {% endif %}
+
+
+
+    <!-- Form to take basic details from user -->
+
+    <div id="form">
+
+        <h2 style="text-align: center; font-size: 60px; padding-top: 30px"> What stream would you want to get into</h2>
+
+        <form method="POST" , action="{{url_for('get_student_plot')}}">
+
+            <div id="div1">
+
+            </div>
+
+            <div id="div3">
+
+              
+
+
+                <label for="stream" style="font-size:37px;">Stream</label>
+
+                <select name="stream" id="stream" style="width:217px; height:30px; font-size:20px;">
+
+                    <option value="fifth">Fifth Grade</option>
+                    <option value="sixth">Sixth Grade</option>
+                    <option value="seventh">Seventh Grade</option>
+                    <option value="eighth">Eighth Grade</option>
+                    <option value="nineth">Nineth Grade</option>
+                    <option value="tenth">Tenth Grade</option>
+                    <option value="Eleventh">Eleventh Grade</option>
+                    <option value="Twelth"> TwelthGrade</option>
+
+                </select>
+                <br>
+                <br>
+
+        
+
+
+                <label for="marks" style="font-size:37px;">Do you want to enter Marks Manually?</label>
+
+                <select name="marks" id="marks" style="width:217px ; height:30px; font-size:20px;">
+
+                    <option value="yes">Yes</option>
+                    <option value="no">No (Use AI Predicted)</option>
+
+
+                </select>
+                <br><br>
+
+             
+
+                <div class="container">
+
+                    <input type="submit" , value='PROCEED' , class="submit" , style="font-size:30px;font-weight:bold;">
+
+
+                </div>
+
+            </div>
+
+
+        </form>
+
+
     </div>
 
 
-    <div>
-        <div class="container">
-            <br><br>
-            <a href='/trend_analysis' class="button"> <b>Click here for Trend Analysis</b></a><br>
-        </div>
-    </div>
 
 
 </body>
