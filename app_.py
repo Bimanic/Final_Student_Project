@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 from flask import render_template
+from code_details import college_details
+from code_details import major_details
 import numpy as np
 import math
 import io
@@ -22,6 +24,31 @@ data_face_6, data_face_7, data_face_8, data_face_9 = {}, {}, {}, {}
 global civil_id
 global name
 global final_student_details
+
+civil_id=0
+gender=""
+major_program=""
+
+pure_math=0
+applied_maths=0
+physics=0
+chemistry=0
+biology=0
+english=0
+social_studies=0
+arabic=0
+islamic=0
+hs=0
+avm=0
+physical_education=0  
+fine_arts=0
+music=0
+ba=0
+me=0
+ed=0
+report_display=""
+
+
 
 def data_loading(dictionary, path):
     file_names = os.listdir(path)
@@ -429,6 +456,223 @@ def trend_predictions():
 @app.route('/proceed_further')
 def proceed_further():
     return render_template('proceed_further.html')
+
+
+
+@app.route('/marks_college_prediction',methods=['POST'])
+def marks_college_prediction():
+    global civil_id 
+    global gender
+    global major_program
+    
+    
+    gender=(request.form['gender'])
+    marks=request.form['marks']
+    major_program=(request.form['stream'])
+ 
+
+    if major_program=="health" or major_program=="natural_physical_sciences":
+        return render_template("entering_marks.html")
+    elif major_program=="education":
+        return render_template("education_marks.html")
+    elif major_program=="management_and_commerce":
+        return render_template("management_marks.html")
+    elif major_program=="engineering":
+        return render_template("engineering_marks.html")
+    else:
+        return render_template("default_marks.html")
+
+
+
+@app.route('/predict_colleges', methods=['POST'])
+def predict_colleges():
+    global major_program
+    global pure_math
+    global applied_maths
+    global physics
+    global chemistry
+    global biology
+    global english
+    global social_studies
+    global arabic
+    global islamic
+    global hs
+    global avm
+    global physical_education  
+    global fine_arts 
+    global music 
+    global ba
+    global me 
+    global ed
+    if major_program=="health" or major_program=="natural_physical_sciences":
+        #pure_maths=int(request.form['pure_maths'])
+        #applied_maths=int(request.form['applied_maths'])
+
+
+        pure_maths=int(request.form['math'])
+        applied_maths=pure_maths
+
+
+
+
+        physics=int(request.form['physics'])
+        chemistry=int(request.form['chemistry'])
+        biology=int(request.form['biology'])
+        english=int(request.form['english'])
+        social_studies=int(request.form['social_studies'])
+        arabic=int(request.form['arabic'])
+        islamic=int(request.form['islamic'])
+        hs=int(request.form['hs'])
+        avm=int(request.form['avm'])
+        #report_display=str(request.form['report_display'])
+
+        if (pure_maths==0 or pure_maths>=50) and (applied_maths==0 or applied_maths>=50) and (physics==0 or physics>=50) and (chemistry==0 or chemistry>=50) and (biology==0 or biology>=50) and (english==0 or english>=50) and (social_studies==0 or social_studies>=50) and (arabic==0 or arabic>=50) and (islamic==0 or islamic>=50) and (hs==0 or hs>=50) and (avm==0 or avm>=50):
+
+    
+            final=college_details.get_details(pure_maths,applied_maths,physics,chemistry,biology,english,social_studies,arabic,islamic,hs,physical_education,fine_arts,music,gender,major_program,avm)
+           
+            if len(final[0])!=0:
+                return render_template("display.html",list_1=final[0],list_2=final[1],list_3=final[2],list_4=final[3],list_5=final[4])
+   
+            else:
+                return render_template("display_not1.html")
+
+
+        else:
+            return render_template("display_not.html")
+    elif major_program=="education":
+        #pure_maths=int(request.form['pure_maths'])
+        #applied_maths=int(request.form['applied_maths'])
+
+
+        pure_maths=int(request.form['math'])
+        applied_maths=pure_maths
+
+
+
+        physics=int(request.form['physics'])
+        chemistry=int(request.form['chemistry'])
+        biology=int(request.form['biology'])
+        english=int(request.form['english'])
+        social_studies=int(request.form['social_studies'])
+        arabic=int(request.form['arabic'])
+        islamic=int(request.form['islamic'])
+        physical_education=int(request.form['physical_education'])
+        fine_arts=int(request.form['fine_arts'])
+        music=int(request.form['music'])
+        
+        avm=int(request.form['avm'])
+
+        if (pure_maths==0 or pure_maths>=50) and (physical_education==0 or physical_education>=50) and (fine_arts==0 or fine_arts>=50) and (music==0 or music>=50) and(applied_maths==0 or applied_maths>=50) and (physics==0 or physics>=50) and (chemistry==0 or chemistry>=50) and (biology==0 or biology>=50) and (english==0 or english>=50) and (social_studies==0 or social_studies>=50) and (arabic==0 or arabic>=50) and (islamic==0 or islamic>=50) and (avm==0 or avm>=50):
+
+    
+            final=college_details.get_details(pure_maths,applied_maths,physics,chemistry,biology,english,social_studies,arabic,islamic,hs,physical_education,fine_arts,music,gender,major_program,avm)
+            if len(final[0])!=0:
+               return render_template("display.html",list_1=final[0],list_2=final[1],list_3=final[2],list_4=final[3],list_5=final[4])
+            else:
+               render_template("display_not1.html")
+
+        else:
+            return render_template("display_not.html")
+    elif major_program=="management_and_commerce":
+        #pure_maths=int(request.form['pure_maths'])
+        #applied_maths=int(request.form['applied_maths'])
+
+
+
+        pure_maths=int(request.form['math'])
+        applied_maths=pure_maths
+
+
+
+        physics=int(request.form['physics'])
+        chemistry=int(request.form['chemistry'])
+        biology=int(request.form['biology'])
+        english=int(request.form['english'])
+        social_studies=int(request.form['social_studies'])
+        arabic=int(request.form['arabic'])
+        islamic=int(request.form['islamic'])
+        hs=int(request.form['ba'])
+        avm=int(request.form['avm'])
+
+        if (pure_maths==0 or pure_maths>=50) and (applied_maths==0 or applied_maths>=50) and (physics==0 or physics>=50) and (chemistry==0 or chemistry>=50) and (biology==0 or biology>=50) and (english==0 or english>=50) and (social_studies==0 or social_studies>=50) and (arabic==0 or arabic>=50) and (islamic==0 or islamic>=50) and (hs==0 or hs>=50) and (avm==0 or avm>=50):
+
+    
+            final=college_details.get_details(pure_maths,applied_maths,physics,chemistry,biology,english,social_studies,arabic,islamic,hs,physical_education,fine_arts,music,gender,major_program,avm)
+            if len(final[0])!=0:
+               return render_template("display.html",list_1=final[0],list_2=final[1],list_3=final[2],list_4=final[3],list_5=final[4])
+            else:
+               render_template("display_not1.html")
+
+        else:
+            return render_template("display_not.html")
+
+
+
+    elif major_program=="engineering":
+        #pure_maths=int(request.form['pure_maths'])
+        #applied_maths=int(request.form['applied_maths'])
+
+        pure_maths=int(request.form['math'])
+        applied_maths=pure_maths
+
+
+        physics=int(request.form['physics'])
+        chemistry=int(request.form['chemistry'])
+        biology=int(request.form['biology'])
+        english=int(request.form['english'])
+        social_studies=int(request.form['social_studies'])
+        arabic=int(request.form['arabic'])
+        islamic=int(request.form['islamic'])
+        ed=int(request.form['ed'])
+        me=int(request.form['me'])
+        #hs=int(request.form['hs'])
+        avm=int(request.form['avm'])
+
+        if (pure_maths==0 or pure_maths>=50) and (applied_maths==0 or applied_maths>=50) and (physics==0 or physics>=50) and (chemistry==0 or chemistry>=50) and (biology==0 or biology>=50) and (english==0 or english>=50) and (social_studies==0 or social_studies>=50) and (arabic==0 or arabic>=50) and (islamic==0 or islamic>=50) and (hs==0 or hs>=50) and (avm==0 or avm>=50) and (ed==0 or ed>=50) and (me==0 or me>=50):
+
+    
+            final=college_details.get_details(pure_maths,applied_maths,physics,chemistry,biology,english,social_studies,arabic,islamic,hs,physical_education,fine_arts,music,gender,major_program,avm,ed,me)
+
+            if len(final[0])!=0:
+                print(final[0])
+                return render_template("display.html",list_1=final[0],list_2=final[1],list_3=final[2],list_4=final[3],list_5=final[4])
+            else:
+                return render_template("display_not1.html")
+
+        else:
+            return render_template("display_not.html")
+
+    else:
+        #pure_maths=int(request.form['pure_maths'])
+        #applied_maths=int(request.form['applied_maths'])
+
+        pure_maths=int(request.form['math'])
+        applied_maths=pure_maths
+
+        physics=int(request.form['physics'])
+        chemistry=int(request.form['chemistry'])
+        biology=int(request.form['biology'])
+        english=int(request.form['english'])
+        social_studies=int(request.form['social_studies'])
+        arabic=int(request.form['arabic'])
+        islamic=int(request.form['islamic'])
+        #hs=int(request.form['hs'])
+        avm=int(request.form['avm'])
+
+        if (pure_maths==0 or pure_maths>=50) and (applied_maths==0 or applied_maths>=50) and (physics==0 or physics>=50) and (chemistry==0 or chemistry>=50) and (biology==0 or biology>=50) and (english==0 or english>=50) and (social_studies==0 or social_studies>=50) and (arabic==0 or arabic>=50) and (islamic==0 or islamic>=50) and (hs==0 or hs>=50) and (avm==0 or avm>=50):
+
+    
+            final=college_details.get_details(pure_maths,applied_maths,physics,chemistry,biology,english,social_studies,arabic,islamic,hs,physical_education,fine_arts,music,gender,major_program,avm)
+
+            if len(final[0])!=0:
+          
+                return render_template("display.html",list_1=final[0],list_2=final[1],list_3=final[2],list_4=final[3],list_5=final[4])
+            else:
+                return render_template("display_not1.html")
+
+        else:
+            return render_template("display_not.html")
 
 if __name__ == '__main__':
     app.run(debug=True,port=5001)
